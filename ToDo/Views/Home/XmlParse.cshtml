@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "XmlParse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    @using (Html.BeginForm("XmlParse", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-inline", role = "form" }))
+    {
+        <div class="col-md-offset-2 col-md-4">
+            <input type="file" name="file" />
+        </div>
+        <div class="col-md-4">
+            <input type="submit" value="XML" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/Content/DataTasks.json")

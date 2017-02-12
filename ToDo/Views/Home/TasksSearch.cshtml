@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ToDo.Models.Task>
+
+<div id="row">
+    <h4>Search Results</h4>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Project
+                </th>
+                <th>
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name </td>
+                    <td>@item.Project.Name</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn-md btn btn-default" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-md btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

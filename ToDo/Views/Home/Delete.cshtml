@@ -1,0 +1,19 @@
+﻿@model ToDo.Models.Task
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm("Delete", "Home", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+    {
+        <div class="col-md-4"><h4>Confirm to delete task</h4></div>
+        <div class="col-md-offset-1 col-md-7">
+
+            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Project.Name)
+
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+</div>

@@ -1,0 +1,14 @@
+﻿@model ToDo.Models.Project
+@{
+    ViewBag.Title = "Create project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+{
+    <div class="col-md-offset-2 col-md-10">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Project" })
+        @Html.ValidationMessageFor(model => model.Name)
+
+        <input type="submit" value="Add project" class="btn btn-default" />
+    </div>
+}
