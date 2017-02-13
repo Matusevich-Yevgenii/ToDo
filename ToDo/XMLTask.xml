@@ -1,14 +1,6 @@
-﻿<TaskList>
-  <Task>
-    <Id>200</Id>
-    <Name>Playing football</Name>
-    <ProjectId>1</ProjectId>
-    <Project>null</Project>
-  </Task>
-  <Task>
-    <Id>201</Id>
-    <Name>Playing football</Name>
-    <ProjectId>1</ProjectId>
-    <Project>null</Project>
-  </Task>
-</TaskList>
+﻿<Model>
+    <Components>
+        <Component id="200" name="Playing football" projectId="1"/>
+        <Component id="201" name="Eat" projectId="2"/>
+    </Components>
+</Model>

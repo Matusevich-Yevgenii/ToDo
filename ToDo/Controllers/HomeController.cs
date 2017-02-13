@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Description;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -243,28 +244,25 @@ namespace ToDo.Controllers
                     return View();
                 }
 
-                List<Task> TaskList;
+                IEnumerable<Task> TaskList;
 
                 try
                 {
-                    Task task = new Task();
-                    task.Id = 177;
-                    task.Name = "lol";
-                    task.ProjectId = 1;
+                    XDocument doc = XDocument.Parse(xml);
 
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Task>));
-                    StreamReader streamReader = new StreamReader(path);
-
-                    TaskList = (List<Task>)serializer.Deserialize(streamReader);
-                    streamReader.Close();
+                    TaskList = from c in doc.Descendants("Component")
+                                    select new Task()
+                                    {
+                                        Id = (int)c.Attribute("id"),
+                                        Name = (string)c.Attribute("name"),
+                                        ProjectId = (int)c.Attribute("projectId")
+                                    };
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                     return RedirectToAction("Index");
                 }
-
-                
 
                 db.Tasks.AddRange(TaskList);
                 db.SaveChanges();
